@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  hybrid-search-api:
+    container_name: hybrid-search-api
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./documents.db:/app/documents.db  # Persist the database file
+    env_file:
+      - .env
+
+    restart: always
