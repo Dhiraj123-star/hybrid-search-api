@@ -15,7 +15,15 @@ def get_db():
 
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to the Hybrid Search API"}
+    return {
+        "project": "Hybrid Search API",
+        "description": "Combines exact keyword and semantic search using OpenAI embeddings.",
+        "endpoints": {
+            "/search": "Perform a hybrid search with your query parameter."
+        },
+        "status": "running"
+    }
+
 
 @app.get("/search")
 def search(query: str = Query(..., min_length=1), conn: sqlite3.Connection = Depends(get_db)):
